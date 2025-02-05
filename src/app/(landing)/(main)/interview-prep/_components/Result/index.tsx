@@ -1,12 +1,13 @@
+import { Assessment } from "@prisma/client";
 import { CheckCircle2, Trophy, XCircle } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { CardContent, CardFooter } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { IQuizResult } from "@/types/interview";
+import { IQuestionResult } from "@/types/interview";
 
 interface IProps {
-  result: IQuizResult;
+  result: Assessment;
   hideStartNew?: boolean;
   onStartNew: () => void;
 }
@@ -40,42 +41,44 @@ function InterviewQuizResult(props: IProps) {
 
         <div className="space-y-4 mt-4">
           <h3 className="font-medium">Question review</h3>
-          {result.questions.map((item, index) => (
-            <div key={index} className="border rounded-lg p-4 space-y-2">
-              <div className="flex justify-between">
-                <p className="font-medium">{item.question}</p>
-                {item.isCorrect ? (
-                  <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0" />
-                ) : (
-                  <XCircle className="w-5 h-5 text-red-500 flex-shrink-0" />
-                )}
-              </div>
+          {(result.questions as unknown as IQuestionResult[]).map(
+            (item, index) => (
+              <div key={index} className="border rounded-lg p-4 space-y-2">
+                <div className="flex justify-between">
+                  <p className="font-medium">{item.question}</p>
+                  {item.isCorrect ? (
+                    <CheckCircle2 className="w-5 h-5 text-green-500 flex-shrink-0" />
+                  ) : (
+                    <XCircle className="w-5 h-5 text-red-500 flex-shrink-0" />
+                  )}
+                </div>
 
-              <div className="text-sm text-muted-foreground">
-                <p>
-                  <span className="font-medium underline underline-offset-2 text-white">
-                    Your answer:
-                  </span>{" "}
-                  {item.userAnswer}
-                </p>
-                {!item.isCorrect && (
+                <div className="text-sm text-muted-foreground">
                   <p>
                     <span className="font-medium underline underline-offset-2 text-white">
-                      Correct answer:
+                      Your answer:
                     </span>{" "}
-                    {item.answer}
+                    {item.userAnswer}
                   </p>
-                )}
-              </div>
+                  {!item.isCorrect && (
+                    <p>
+                      <span className="font-medium underline underline-offset-2 text-white">
+                        Correct answer:
+                      </span>{" "}
+                      {item.answer}
+                    </p>
+                  )}
+                </div>
 
-              <div className="text-sm text-muted-foreground">
-                <p className="font-medium underline underline-offset-2 text-white">
-                  Explaination:
-                </p>
-                <p>{item.explanation}:</p>
+                <div className="text-sm text-muted-foreground">
+                  <p className="font-medium underline underline-offset-2 text-white">
+                    Explaination:
+                  </p>
+                  <p>{item.explanation}:</p>
+                </div>
               </div>
-            </div>
-          ))}
+            )
+          )}
         </div>
       </CardContent>
 

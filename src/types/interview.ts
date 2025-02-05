@@ -19,13 +19,7 @@ export interface IQuestionResult {
   userAnswer: string;
 }
 
-export interface IQuizResult {
-  id: string;
-  category: string;
-  improvementTip: string;
-  questions: IQuestionResult[];
-  quizScore: number;
-  userId: string;
-  createdAt: Date;
-  updatedAt: Date;
+export interface IPerformanceChart {
+  date: string;
+  score: number;
 }

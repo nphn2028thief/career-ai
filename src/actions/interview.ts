@@ -22,9 +22,6 @@ export const generateInterviewQuiz = async (): Promise<IQuestion[]> => {
     where: {
       userId,
     },
-    include: {
-      industryInsight: true,
-    },
   });
 
   if (!user) throw new Error("User not found");
@@ -52,9 +49,6 @@ export const saveQuizResult = async (
   const user = await db.user.findUnique({
     where: {
       userId,
-    },
-    include: {
-      industryInsight: true,
     },
   });
 
@@ -105,5 +99,34 @@ export const saveQuizResult = async (
   } catch (error: any) {
     console.error("Error saving quiz result:", error.message);
     throw new Error("Failed to save quiz result.");
+  }
+};
+
+export const getAssessments = async () => {
+  const { userId } = await auth();
+  if (!userId) throw new Error("Unauthorized.");
+
+  const user = await db.user.findUnique({
+    where: {
+      userId,
+    },
+  });
+
+  if (!user) throw new Error("User not found");
+
+  try {
+    const assessments = await db.assessment.findMany({
+      where: {
+        userId: user.id,
+      },
+      orderBy: {
+        createdAt: "asc",
+      },
+    });
+
+    return assessments;
+  } catch (error: any) {
+    console.error("Error fetching assessments:", error.message);
+    throw new Error("Failed to fetch assessments.");
   }
 };
