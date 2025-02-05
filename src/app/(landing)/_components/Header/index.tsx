@@ -18,8 +18,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import EPath from "@/constants/path";
+import { checkUser } from "@/lib/user";
 
-function Header() {
+async function Header() {
+  await checkUser();
+
   return (
     <header className="fixed left-0 top-0 right-0 z-[999] border-b bg-background/80 backdrop-blur-md supports-[backdrop-filter]:bg-background/60">
       <nav className="h-[66px] container mx-auto px-4 flex justify-between items-center">
