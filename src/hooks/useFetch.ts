@@ -7,7 +7,7 @@ const useFetch = <T>(callback: (...args: any) => Promise<any>) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState(null);
 
-  const fn = async (...args: T[]): Promise<void> => {
+  const fn = async (...args: any): Promise<void> => {
     setIsLoading(true);
     setError(null);
 

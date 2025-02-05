@@ -4,6 +4,7 @@ enum EPath {
   RESUME = "/resume",
   COVER_LETTER = "/ai-cover-letter",
   INTERVIEW_PREP = "/interview-prep",
+  MOCK_INTERVIEW = "/interview-prep/mock",
   ONBOARDING = "/onboarding",
 }
 
