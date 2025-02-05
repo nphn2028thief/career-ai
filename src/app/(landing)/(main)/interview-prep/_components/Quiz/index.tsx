@@ -18,7 +18,8 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import InterviewQuizResult from "../Result";
 import useFetch from "@/hooks/useFetch";
-import { IQuestion, IQuiz, IQuizResult } from "@/types/interview";
+import { IQuestion, IQuiz } from "@/types/interview";
+import { Assessment } from "@prisma/client";
 
 const initialQuiz: IQuiz = {
   currentQuestion: 0,
@@ -43,7 +44,7 @@ function InterviewQuiz() {
     fn: saveQuizResultFn,
     data: quizResult,
     setData: setQuizResult,
-  } = useFetch<IQuizResult>(saveQuizResult);
+  } = useFetch<Assessment>(saveQuizResult);
 
   useEffect(() => {
     if (quizData) {
@@ -54,10 +55,12 @@ function InterviewQuiz() {
     }
   }, [quizData]);
 
+  // Loading generating quiz data
   if (isGeneratingQuiz) {
     return <BarLoader color="gray" width={"100%"} />;
   }
 
+  // Has quiz result when clicked "Finish quiz"
   if (quizResult) {
     const onStartNewQuiz = () => {
       setQuiz(initialQuiz);
@@ -72,6 +75,7 @@ function InterviewQuiz() {
     );
   }
 
+  // Initial UI when accessed to this page
   if (!quizData) {
     return (
       <Card>
