@@ -16,6 +16,7 @@ export const updateUser = async (data: User) => {
       userId,
     },
   });
+
   if (!user) throw new Error("User not found");
 
   try {
@@ -76,6 +77,7 @@ export const getUserOnboardingStatus = async () => {
       userId,
     },
   });
+
   if (!user) throw new Error("User not found");
 
   try {

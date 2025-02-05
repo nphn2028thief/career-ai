@@ -50,7 +50,7 @@ model IndustryInsight {
 
 model Assessment {
   id             String   @id @default(cuid())
-  userId         String   @unique
+  userId         String
   User           User     @relation(fields: [userId], references: [id])
   quizScore      Float
   questions      Json[]

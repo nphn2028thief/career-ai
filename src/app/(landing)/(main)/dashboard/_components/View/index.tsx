@@ -174,8 +174,6 @@ function DashboardView({ industryInsight }: IProps) {
           <div className="h-[400px]">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart
-                width={500}
-                height={300}
                 data={salaryDataRef.current}
                 margin={{
                   top: 5,

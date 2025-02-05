@@ -1,7 +1,5 @@
-import React from "react";
-
-function MockInterviewPage() {
-  return <div>MockInterviewPage</div>;
+function InterviewPage() {
+  return <div className="pt-16 px-5"></div>;
 }
 
-export default MockInterviewPage;
+export default InterviewPage;
