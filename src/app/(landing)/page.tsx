@@ -1,3 +1,7 @@
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Accordion,
@@ -5,15 +9,12 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import HeroSection from "@/components/features/HeroSection";
-import { faqs, features, howItWorks, testimonials } from "@/constants/landing";
-import Image from "next/image";
-import Link from "next/link";
-import EPath from "@/constants/path";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import HeroSection from "@/app/(landing)/_components/HeroSection";
+import { faqs, features, howItWorks, testimonials } from "@/constants/landing";
+import EPath from "@/constants/path";
 
-export default function HomePage() {
+export default function LandingPage() {
   return (
     <div>
       <div className="grid-background-linear"></div>

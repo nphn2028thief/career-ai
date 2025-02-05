@@ -1,7 +1,7 @@
+import Header from "./_components/Header";
 import { ILayoutProps } from "@/types/layout";
-import Header from "./components/Header";
 
-function MainLayout({ children }: ILayoutProps) {
+function LandingLayout({ children }: ILayoutProps) {
   return (
     <div className="h-full flex flex-col">
       <Header />
@@ -15,4 +15,4 @@ function MainLayout({ children }: ILayoutProps) {
   );
 }
 
-export default MainLayout;
+export default LandingLayout;
