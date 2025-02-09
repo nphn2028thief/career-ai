@@ -53,3 +53,55 @@ export const improvementPrompt = (
     Keep the response under 2 sentences and make it encouraging.
     Don't explicitly mention the mistakes, instead focus on what to learn or practice.
   `;
+
+export const experienceDescPrompt = (
+  type: string,
+  industry: string | null,
+  currentContent: string
+) => `
+    As an expert resume writer, improve the following ${type} description for a ${industry} professional.
+    Make it more impactful, quantifiable, and aligned with industry standards.
+    Current content: "${currentContent}"
+
+    Requirements:
+    1. Use action verbs
+    2. Include metrics and results where possible
+    3. Highlight relevant technical skills
+    4. Keep it concise but detailed
+    5. Focus on achievements over responsibilities
+    6. Use industry-specific keywords
+    
+    Format the response as a single paragraph without any additional text or explanations.
+  `;
+
+export const coverLetterPrompt = (
+  jobTitle: string,
+  companyName: string,
+  industry: string | null,
+  experience: number | null,
+  skills: string[],
+  bio: string | null,
+  jobDesc: string | null
+) => `
+      Write a professional cover letter for a ${jobTitle} position at ${companyName}.
+      
+      About the candidate:
+      - Industry: ${industry}
+      - Years of Experience: ${experience}
+      - Skills: ${skills?.join(", ")}
+      - Professional Background: ${bio}
+      
+      Job Description:
+      ${jobDesc}
+      
+      Requirements:
+      1. Use a professional, enthusiastic tone
+      2. Highlight relevant skills and experience
+      3. Show understanding of the company's needs
+      4. Keep it concise (max 400 words)
+      5. Use proper business letter formatting in markdown
+      6. Include specific examples of achievements
+      7. Relate candidate's background to job requirements
+      
+      Format the letter in markdown.
+    `;

@@ -55,6 +55,24 @@ function OnBoardingForm() {
     resolver: zodResolver(OnboardingSchema),
   });
 
+  const {
+    isLoading: isUpdateUserLoading,
+    fn: updateUserFn,
+    error: updateUserError,
+  } = useFetch<TFormValue>(updateUser);
+
+  useEffect(() => {
+    if (updateUserError) {
+      toast.success("Failed to complete profile");
+      return;
+    }
+
+    if (!isUpdateUserLoading) {
+      toast.success("Profile completed successfully!");
+      router.push(EPath.DASHBOARD);
+    }
+  }, [updateUserError, isUpdateUserLoading, router]);
+
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
       if (experienceRef.current && experienceRef.current.type === "number") {
@@ -75,9 +93,6 @@ function OnBoardingForm() {
     };
   }, []);
 
-  const { isLoading: isUpdateUserLoading, fn: updateUserFn } =
-    useFetch<TFormValue>(updateUser);
-
   const onSubmit: SubmitHandler<TFormValue> = async (data) => {
     try {
       console.log({
@@ -92,8 +107,6 @@ function OnBoardingForm() {
           .toLowerCase()
           .replace(/ /g, "-"),
       });
-      toast.success("Profile completed successfully!");
-      router.push(EPath.DASHBOARD);
     } catch (error) {
       console.log("Complete profile onboarding error: ", error);
     }
@@ -144,7 +157,7 @@ function OnBoardingForm() {
                         ))}
                       </SelectContent>
                     </Select>
-                    <FormMessage />
+                    <FormMessage className="text-red-500" />
                   </FormItem>
                 )}
               />
@@ -177,7 +190,7 @@ function OnBoardingForm() {
                           ))}
                         </SelectContent>
                       </Select>
-                      <FormMessage />
+                      <FormMessage className="text-red-500" />
                     </FormItem>
                   )}
                 />
@@ -199,7 +212,7 @@ function OnBoardingForm() {
                         placeholder="Enter years of experience"
                       />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="text-red-500" />
                   </FormItem>
                 )}
               />
@@ -221,7 +234,7 @@ function OnBoardingForm() {
                     <FormDescription className="text-sm text-muted-foreground">
                       Separate multiple skills with commas and spaces
                     </FormDescription>
-                    <FormMessage />
+                    <FormMessage className="text-red-500" />
                   </FormItem>
                 )}
               />
@@ -241,7 +254,7 @@ function OnBoardingForm() {
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="text-red-500" />
                   </FormItem>
                 )}
               />

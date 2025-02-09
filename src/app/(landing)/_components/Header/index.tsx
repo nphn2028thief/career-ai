@@ -52,7 +52,7 @@ async function Header() {
                   <ChevronDown className="w- h-4" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent>
+              <DropdownMenuContent className="mt-[14px]">
                 <DropdownMenuItem>
                   <Link href={EPath.RESUME} className="flex items-center gap-2">
                     <FileText className="w-4 h-4" />
