@@ -36,7 +36,7 @@ function InterviewQuizList({ assessments }: { assessments: Assessment[] }) {
     setNewAssessment(
       assessments.slice((currentPage - 1) * pageSize, currentPage * pageSize)
     );
-  }, [assessments, pageSize, currentPage]);
+  }, [assessments, currentPage]);
 
   return (
     <>

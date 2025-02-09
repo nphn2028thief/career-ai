@@ -30,6 +30,7 @@ export const getIndustryInsights = async (): Promise<IndustryInsight> => {
       industryInsight: true,
     },
   });
+
   if (!user) throw new Error("User not found");
   if (!user.industryInsight) {
     const insights = await generateAIInsights(user.industry);
